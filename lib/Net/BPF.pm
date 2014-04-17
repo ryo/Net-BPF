@@ -54,7 +54,10 @@ sub new {
 	my ($class, %arg) = @_;
 
 	my $mode = (exists($arg{'capture'}) && $arg{'capture'}) ? O_RDWR : O_WRONLY;
-	my $bpf = IO::File->new("/dev/bpf", $mode) or die "open: /dev/bpf: $!\n";
+	my $bpf = IO::File->new("/dev/bpf", $mode) or do {
+		$@ = "Cannot open /dev/bpf: $!\n";
+		return undef;
+	}
 	bless $bpf, $class;
 
 	# set and get bpf buffer size
@@ -214,7 +217,7 @@ sets the status of the C<header complete> flag.
 =item capture => BOOL
 
 if C<capture> is true, bpf will be opened readonly.
-if C<capture> is false (default), bpf is readable and writable, and it is able to send packet.
+if C<capture> is false (default), bpf is readable and writable. and it is able to send packet.
 
 =head1 METHODS
 
@@ -234,7 +237,7 @@ sets the bpf_program.
 
 send a packet.
 
-  $bpf->send(pack("C*", 0x0102030405060708));
+  $bpf->send(pack("C*", 0x01 .. 0xff));
 
 =item $bpf->receive();
 
@@ -248,7 +251,7 @@ specify name of interface
 
 =item $bpf->promiscuous(BOOL)
 
-Enables or disables C<promiscuous mode>.
+enables or disables C<promiscuous mode>.
 
 =item $bpf->setf(STRING)
 

@@ -68,7 +68,7 @@ METHODS
        $bpf->send(STRING)
            send a packet.
 
-             $bpf->send(pack("C*", 0x0102030405060708));
+             $bpf->send(pack("C*", 0x01 .. 0xff));
 
        $bpf->receive();
            receive a packet.
@@ -79,7 +79,7 @@ METHODS
            specify name of interface
 
        $bpf->promiscuous(BOOL)
-           Enables or disables "promiscuous mode".
+           enables or disables "promiscuous mode".
 
        $bpf->setf(STRING)
            much the same of $bpf->filter, but setf() treat raw scalar of
