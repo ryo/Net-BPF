@@ -115,19 +115,6 @@ setf(stream, ...)
 
 
 void
-promiscuous(stream)
-	OutputStream stream
-    CODE:
-	int ret;
-
-	ret = ioctl(PerlIO_fileno(stream), BIOCPROMISC);
-	if (ret >= 0)
-		XSRETURN_IV(1);
-	else
-		XSRETURN_UNDEF;
-
-
-void
 flush(stream)
 	OutputStream stream
     CODE:
@@ -250,6 +237,22 @@ version(stream)
 		EXTEND(SP, 1);
 		PUSHs(&PL_sv_undef);
 	}
+
+
+void
+promiscuous(stream, ...)
+	OutputStream stream
+    CODE:
+	int ret;
+	u_int on;
+
+	if (items > 1) {
+		on = SvIV(ST(1));
+		ret = ioctl(PerlIO_fileno(stream), BIOCPROMISC, &on);
+		if (ret >= 0)
+			XSRETURN_IV(1);
+	}
+	XSRETURN_UNDEF;
 
 
 void
