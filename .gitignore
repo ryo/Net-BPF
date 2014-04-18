@@ -1,5 +1,6 @@
 BPF.bs
 BPF.c
+BPF.o
 MYMETA.json
 MYMETA.yml
 Makefile
