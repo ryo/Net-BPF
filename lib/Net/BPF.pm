@@ -283,7 +283,7 @@ return array of statistics.
 
   my ($receive_counter, $drop_counter, $capture_counter) = $bpf->stats().
 
-$capture_counter is available on only NetBSD.
+$capture_counter is available only on NetBSD.
 
 =item $bpf->version()
 
