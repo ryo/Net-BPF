@@ -2,7 +2,7 @@ NAME
        Net::BPF - Perl interface to reading or writing bpf
 
 SYNOPSIS
-       use Net::BPF qw(all);
+       use Net::BPF qw(:all);
 
          my $bpf = Net::BPF->new(
            interface => "wm0",
