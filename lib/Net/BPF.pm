@@ -57,7 +57,7 @@ sub new {
 	my $bpf = IO::File->new("/dev/bpf", $mode) or do {
 		$@ = "Cannot open /dev/bpf: $!\n";
 		return undef;
-	}
+	};
 	bless $bpf, $class;
 
 	# set and get bpf buffer size
@@ -155,7 +155,7 @@ Net::BPF - Perl interface to reading or writing bpf
 
 =head1 SYNOPSIS
 
-use Net::BPF qw(all);
+use Net::BPF qw(:all);
 
   my $bpf = Net::BPF->new(
     interface => "wm0",
