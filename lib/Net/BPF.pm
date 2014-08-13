@@ -219,7 +219,11 @@ sets the status of the C<header complete> flag.
 if C<capture> is true, bpf will be opened readonly.
 if C<capture> is false (default), bpf is readable and writable. and it is able to send packet.
 
+=back
+
 =head1 METHODS
+
+=over 8
 
 =item $bpf->filter(ARRAY)
 
@@ -311,8 +315,11 @@ enables or disables C<see sent> flag.
 
 sets or gets the status of the C<packet feedback mode> flag.
 
+=back
 
 =head1 FUNCTIONS
+
+=over 8
 
 =item BPF_STMT(code, k)
 
@@ -339,8 +346,11 @@ unpack_bpf_hdr() return ARRAY contains 5 values.
 
 usually, you can use $bpf->receive(), and you need not to use C<unpack_bpf_hdr()>.
 
+=back
 
 =head1 EXPORT
+
+=over 8
 
 =item BPF_LD BPF_LDX BPF_ST BPF_STX BPF_ALU BPF_JMP BPF_RET BPF_MISC
 
@@ -358,6 +368,7 @@ usually, you can use $bpf->receive(), and you need not to use C<unpack_bpf_hdr()
 
 =item BPF_ALIGNMENT BPF_MAXINSNS BPF_DFLTBUFSIZE BPF_MAXBUFSIZE BPF_MINBUFSIZE
 
+=back
 
 =head1 SEE ALSO
 
